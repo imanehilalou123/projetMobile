@@ -1,16 +1,30 @@
 pipeline {
     agent any
-      environment {
-             // Récupère le username et le password/token de Docker Hub depuis Jenkins
-             DOCKER_HUB_CRED = credentials('docker_hub_credentials')
-         }
-    stages {
 
-       stage('Test Git') {
-                    steps {
-                    echo $DOCKER_HUB_CRED
-                        echo "Jenkins lit bien le Jenkinsfile !"
+    environment {
+        IMAGE_NAME = "imanehl13/springbootappdeploy"
+    }
+
+    stages {
+        stage('Docker Build') {
+            steps {
+                script {
+                    // Build de l'image Docker et la stocke dans une variable
+                    app = docker.build("${IMAGE_NAME}:${env.BUILD_NUMBER}")
+                }
+            }
+        }
+
+        stage('Docker Push') {
+            steps {
+                script {
+                    // Push avec authentification via credentials Jenkins
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_credentials') {
+                        app.push("${env.BUILD_NUMBER}")
+                        app.push("latest")
                     }
                 }
+            }
+        }
     }
 }
