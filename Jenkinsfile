@@ -3,11 +3,15 @@ pipeline {
 
     stages {
 
-        stage('Test Git') {
+        stage('Clone') {
+                    steps {
+                        git 'https://github.com/imanehilalou123/projetMobile.git'
+                    }
+                }
+
+       stage('Test Git') {
                     steps {
                         echo "Jenkins lit bien le Jenkinsfile !"
-                        sh 'ls -la'
-                        sh 'git branch -a'
                     }
                 }
     }
