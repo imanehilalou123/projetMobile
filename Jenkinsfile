@@ -8,7 +8,7 @@ pipeline {
 
        stage('Test Git') {
                     steps {
-                    echo $DOCKER_HUB_CRED_USR
+                    echo $DOCKER_HUB_CRED
                         echo "Jenkins lit bien le Jenkinsfile !"
                     }
                 }
