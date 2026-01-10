@@ -5,7 +5,7 @@ pipeline {
 
       stage('Docker Build') {
                   steps {
-                      sh 'docker build -t SpringBootAppDeploy:1.0 .'
+                      sh 'docker build -t springbootappdeploy:1.0 .'
                   }
               }
 
