@@ -1,30 +1,14 @@
 pipeline {
     agent any
-     environment {
-            DOCKER_USER = credentials("imanehl13")
-            DOCKER_PASS = credentials('Imane-Hilalou1')
-        }
+      environment {
+             // Récupère le username et le password/token de Docker Hub depuis Jenkins
+             DOCKER_HUB_CRED = credentials('docker_hub_credentials')
+         }
     stages {
-
-      stage('Docker Build') {
-                  steps {
-                      sh 'docker build -t springbootappdeploy:1.0 .'
-                  }
-              }
-      stage('Docker Login') {
-                  steps {
-                      sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
-                  }
-              }
-      stage('Docker Push') {
-                  steps {
-                      sh 'docker tag springbootappdeploy:1.0 imanehl13/springbootappdeploy:1.0'
-                      sh 'docker push imanehl13/springbootappdeploy:1.0'
-                  }
-              }
 
        stage('Test Git') {
                     steps {
+                    echo $DOCKER_HUB_CRED_USR
                         echo "Jenkins lit bien le Jenkinsfile !"
                     }
                 }
