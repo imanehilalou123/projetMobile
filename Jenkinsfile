@@ -3,11 +3,11 @@ pipeline {
 
     stages {
 
-        stage('Clone') {
-                    steps {
-                        git 'https://github.com/imanehilalou123/projetMobile.git'
-                    }
-                }
+      stage('Docker Build') {
+                  steps {
+                      sh 'docker build -t SpringBootAppDeploy:1.0 .'
+                  }
+              }
 
        stage('Test Git') {
                     steps {
