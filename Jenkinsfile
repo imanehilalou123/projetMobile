@@ -8,7 +8,7 @@ pipeline {
                     }
                 }
 
-                stage('Docker Push') {
+       stage('Docker Push') {
                     steps {
                         script {
                             docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_credentials') {
@@ -16,7 +16,12 @@ pipeline {
                                       .push("latest")
                             }
                         }
-                    }
+         }
+        stage('Docker deploy') {
+                           steps {
+                               sh 'kubectl apply -f k8s/'
+                           }
+                       }
         }
     }
 }
