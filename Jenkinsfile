@@ -19,6 +19,11 @@ pipeline {
                 sh 'kubectl apply -f k8s/deployement.yml'
             }
         }
+        stage('Show URL') {
+            steps {
+                echo 'Use this command locally to access the app: minikube service monapp-service --url'
+            }
+        }
 
     }
 }
