@@ -15,9 +15,7 @@ pipeline {
        }
 stage('K8s Deploy') {
     steps {
-        sh '
-          kubectl apply -f k8s/deployement.yml
-        '
+        sh 'kubectl apply -f k8s/deployement.yml'
     }
 }
 //sh 'docker run -p 9090:8080 --name jenkins imanehl13/springbootappdeploy:latest'
