@@ -17,6 +17,7 @@ pipeline {
                             }
                         }
          }
+         }
         stage('Docker deploy') {
                            steps {
                                sh 'kubectl apply -f k8s/'
