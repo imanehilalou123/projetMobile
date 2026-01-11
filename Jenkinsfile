@@ -15,9 +15,7 @@ pipeline {
        }
 stage('K8s Deploy') {
     steps {
-        withKubeConfig([credentialsId: 'kubernetes']) {
-            sh 'kubectl apply -f k8s/deployment.yml --validate=false'
-        }
+       script{ kubernetesDeploy(configs: "k8s/deployement.yml",kubeconfigId: "kubernetes") } }
     }
 }
 
