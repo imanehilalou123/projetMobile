@@ -15,7 +15,7 @@ pipeline {
        }
 stage('K8s Deploy') {
     steps {
-       script{ kubernetesDeploy(configs: "k8s/deployement.yml",kubeconfigId: "kubernetes") } }
+       script{ kubernetesDeploy(configs: "k8s/deployement.yml",kubeconfigId: "kubernetes") }
     }
 }
 
