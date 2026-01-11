@@ -21,8 +21,6 @@ stage('K8s Deploy') {
 //sh 'docker run -p 9090:8080 --name jenkins imanehl13/springbootappdeploy:latest'
 
     }
-}
+  }
 
-
-    }
 }
