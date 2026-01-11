@@ -13,14 +13,14 @@ pipeline {
                         }
          }
        }
-        stage('Docker deploy') {
-                           steps {
-                           script{
-                           kubernetesDeploy(configs: "k8s/deployement.yml",kubeconfigId: "kubernetes")
-                           }
+stage('K8s Deploy') {
+    steps {
+        withKubeConfig([credentialsId: 'kubernetes']) {
+            sh 'kubectl apply -f k8s/deployment.yml --validate=false'
+        }
+    }
+}
 
-                           }
-                       }
 
     }
 }
